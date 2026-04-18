@@ -89,8 +89,8 @@ class ExtendedRenderer extends marked.Renderer {
   code = ({ type, raw,  text, codeBlockStyle, lang, escaped }: Tokens.Code): string => super.code({ type, raw, text, codeBlockStyle, lang, escaped });
   blockquote = ({ type, raw, text, tokens }: Tokens.Blockquote): string => super.blockquote({ type, raw, text, tokens });
   html = ({ type, raw, text, pre, block }: Tokens.HTML): string => super.html({ type, raw, text, pre, block });
-  heading = ({ type, raw, text, depth, tokens }: Tokens.Heading): string => super.heading({ type, raw, text, depth, tokens });
-  hr = ({ type, raw }: Tokens.Hr): string => super.hr({ type, raw });
+  heading = ({ type, raw, text, depth, tokens, style }: Tokens.Heading): string => super.heading({ type, raw, text, depth, tokens, style });
+  hr = ({ type, raw, character }: Tokens.Hr): string => super.hr({ type, raw, character });
   list = ({ type, raw, ordered, start, loose, items }: Tokens.List): string => super.list({ type, raw, ordered, start, loose, items});
   listitem = ({ type, raw, task, checked, loose, text, tokens }: Tokens.ListItem): string => super.listitem({ type, raw, task, checked, loose, text, tokens });
   checkbox = ({ type, raw, checked }: Tokens.Checkbox): string => super.checkbox({ type, raw, checked });
@@ -153,6 +153,7 @@ marked.use({
           type: 'heading',
           raw: cap[0],
           depth: cap[1].length,
+          style: 'atx',
           text,
           tokens: this.lexer.inline(text)
         };

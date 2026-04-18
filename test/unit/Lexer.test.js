@@ -768,6 +768,101 @@ a | b
       });
     });
 
+    it('ordered non-sequential', () => {
+      expectTokens({
+        md: `
+1. item 1
+1. item 2
+3. item 3
+`,
+        tokens: [
+          {
+            type: 'space',
+            raw: '\n',
+            lines: 1,
+          },
+          {
+            type: 'list',
+            raw: '1. item 1\n1. item 2\n3. item 3\n',
+            ordered: true,
+            start: 1,
+            loose: false,
+            orderChar: '.',
+            items: [
+              {
+                type: 'list_item',
+                raw: '1. item 1\n',
+                task: false,
+                loose: false,
+                text: 'item 1',
+                tokens: [
+                  {
+                    type: 'text',
+                    raw: 'item 1',
+                    text: 'item 1',
+                    tokens: [
+                      {
+                        type: 'text',
+                        raw: 'item 1',
+                        text: 'item 1',
+                        escaped: false,
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                type: 'list_item',
+                raw: '1. item 2\n',
+                task: false,
+                value: 1,
+                loose: false,
+                text: 'item 2',
+                tokens: [
+                  {
+                    type: 'text',
+                    raw: 'item 2',
+                    text: 'item 2',
+                    tokens: [
+                      {
+                        type: 'text',
+                        raw: 'item 2',
+                        text: 'item 2',
+                        escaped: false,
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                type: 'list_item',
+                raw: '3. item 3',
+                task: false,
+                value: 3,
+                loose: false,
+                text: 'item 3',
+                tokens: [
+                  {
+                    type: 'text',
+                    raw: 'item 3',
+                    text: 'item 3',
+                    tokens: [
+                      {
+                        type: 'text',
+                        raw: 'item 3',
+                        text: 'item 3',
+                        escaped: false,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+    });
+
     it('ordered with parenthesis', () => {
       expectTokens({
         md: `

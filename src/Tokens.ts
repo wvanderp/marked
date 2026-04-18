@@ -157,6 +157,7 @@ export namespace Tokens {
     type: 'list_item';
     raw: string;
     task: boolean;
+    value?: number;
     checked?: boolean;
     loose: boolean;
     text: string;

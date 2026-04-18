@@ -257,6 +257,8 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
           : { bulletChar: cap[1].trim() as '*' | '-' | '+' }),
       };
 
+      let nextItemValue = list.start;
+
       bull = isordered ? `\\d{1,9}\\${bull.slice(-1)}` : `\\${bull}`;
 
       if (this.options.pedantic) {
@@ -399,14 +401,24 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
           }
         }
 
-        list.items.push({
+        const item: Tokens.ListItem = {
           type: 'list_item',
           raw,
           task: !!this.options.gfm && this.rules.other.listIsTask.test(itemContents),
           loose: false,
           text: itemContents,
           tokens: [],
-        });
+        };
+
+        if (list.ordered && nextItemValue !== '') {
+          const itemValue = Number.parseInt(cap[1].trim().slice(0, -1), 10);
+          if (itemValue !== nextItemValue) {
+            item.value = itemValue;
+          }
+          nextItemValue = itemValue + 1;
+        }
+
+        list.items.push(item);
 
         list.raw += raw;
       }
