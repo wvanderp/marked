@@ -139,6 +139,7 @@ export namespace Tokens {
     text: string;
     tokens: Token[];
     autolink?: boolean;
+    bareAutolink?: boolean;
   }
 
   export interface List {

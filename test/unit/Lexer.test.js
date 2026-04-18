@@ -1933,6 +1933,7 @@ paragraph
                 text: 'https://example.com',
                 href: 'https://example.com',
                 autolink: true,
+                bareAutolink: false,
                 tokens: [
                   {
                     type: 'text',
@@ -1956,6 +1957,7 @@ paragraph
                 text: 'test@example.com',
                 href: 'mailto:test@example.com',
                 autolink: true,
+                bareAutolink: false,
                 tokens: [
                   {
                     type: 'text',
@@ -1978,6 +1980,7 @@ paragraph
                 text: 'https://example.com',
                 href: 'https://example.com',
                 autolink: true,
+                bareAutolink: true,
                 tokens: [
                   {
                     type: 'text',
@@ -2001,6 +2004,7 @@ paragraph
                 text: 'test@example.com',
                 href: 'mailto:test@example.com',
                 autolink: true,
+                bareAutolink: true,
                 tokens: [
                   {
                     type: 'text',

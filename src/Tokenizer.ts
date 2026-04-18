@@ -905,6 +905,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
         text,
         href,
         autolink: true,
+        bareAutolink: false,
         tokens: [
           {
             type: 'text',
@@ -943,6 +944,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
         text,
         href,
         autolink: true,
+        bareAutolink: true,
         tokens: [
           {
             type: 'text',
