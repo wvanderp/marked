@@ -132,6 +132,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
         depth: cap[1].length,
         text,
         tokens: this.lexer.inline(text),
+        style: 'atx',
       };
     }
   }
@@ -142,6 +143,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
       return {
         type: 'hr',
         raw: rtrim(cap[0], '\n'),
+        character: cap[0].trim().charAt(0) as '*' | '-' | '_',
       };
     }
   }
@@ -243,6 +245,9 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
         start: isordered ? +bull.slice(0, -1) : '',
         loose: false,
         items: [],
+        ...(isordered
+          ? { orderChar: cap[1].trim().slice(-1) as '.' | ')' }
+          : { bulletChar: cap[1].trim() as '*' | '-' | '+' }),
       };
 
       bull = isordered ? `\\d{1,9}\\${bull.slice(-1)}` : `\\${bull}`;
@@ -584,6 +589,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
         depth: cap[2].charAt(0) === '=' ? 1 : 2,
         text,
         tokens: this.lexer.inline(text),
+        style: 'setext',
       };
     }
   }
@@ -898,6 +904,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
         raw: cap[0],
         text,
         href,
+        autolink: true,
         tokens: [
           {
             type: 'text',
@@ -935,6 +942,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
         raw: cap[0],
         text,
         href,
+        autolink: true,
         tokens: [
           {
             type: 'text',

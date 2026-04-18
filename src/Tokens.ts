@@ -105,11 +105,13 @@ export namespace Tokens {
     depth: number;
     text: string;
     tokens: Token[];
+    style: 'atx' | 'setext';
   }
 
   export interface Hr {
     type: 'hr';
     raw: string;
+    character: '*' | '-' | '_';
   }
 
   export interface HTML {
@@ -136,6 +138,7 @@ export namespace Tokens {
     title?: string | null;
     text: string;
     tokens: Token[];
+    autolink?: boolean;
   }
 
   export interface List {
@@ -145,6 +148,8 @@ export namespace Tokens {
     start: number | '';
     loose: boolean;
     items: ListItem[];
+    bulletChar?: '*' | '-' | '+';
+    orderChar?: '.' | ')';
   }
 
   export interface ListItem {

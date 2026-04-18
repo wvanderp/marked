@@ -127,6 +127,7 @@ lheading 2
             depth: 1,
             text: 'heading 1',
             tokens: [{ type: 'text', raw: 'heading 1', text: 'heading 1', escaped: false }],
+            style: 'atx',
           },
           {
             type: 'space',
@@ -138,6 +139,7 @@ lheading 2
             depth: 2,
             text: 'heading 2',
             tokens: [{ type: 'text', raw: 'heading 2', text: 'heading 2', escaped: false }],
+            style: 'atx',
           },
           {
             type: 'space',
@@ -149,6 +151,7 @@ lheading 2
             depth: 3,
             text: 'heading 3',
             tokens: [{ type: 'text', raw: 'heading 3', text: 'heading 3', escaped: false }],
+            style: 'atx',
           },
           {
             type: 'space',
@@ -160,6 +163,7 @@ lheading 2
             depth: 4,
             text: 'heading 4',
             tokens: [{ type: 'text', raw: 'heading 4', text: 'heading 4', escaped: false }],
+            style: 'atx',
           },
           {
             type: 'space',
@@ -171,6 +175,7 @@ lheading 2
             depth: 5,
             text: 'heading 5',
             tokens: [{ type: 'text', raw: 'heading 5', text: 'heading 5', escaped: false }],
+            style: 'atx',
           },
           {
             type: 'space',
@@ -182,6 +187,7 @@ lheading 2
             depth: 6,
             text: 'heading 6',
             tokens: [{ type: 'text', raw: 'heading 6', text: 'heading 6', escaped: false }],
+            style: 'atx',
           },
           {
             type: 'space',
@@ -193,6 +199,7 @@ lheading 2
             depth: 1,
             text: 'lheading 1',
             tokens: [{ type: 'text', raw: 'lheading 1', text: 'lheading 1', escaped: false }],
+            style: 'setext',
           },
           {
             type: 'space',
@@ -204,6 +211,7 @@ lheading 2
             depth: 2,
             text: 'lheading 2',
             tokens: [{ type: 'text', raw: 'lheading 2', text: 'lheading 2', escaped: false }],
+            style: 'setext',
           },
         ],
       });
@@ -218,6 +226,7 @@ lheading 2
           depth: 1,
           text: 'heading with trailing spaces',
           tokens: [{ type: 'text', raw: 'heading with trailing spaces', text: 'heading with trailing spaces', escaped: false }],
+          style: 'setext',
         }],
       });
     });
@@ -243,6 +252,7 @@ lheading 2
           depth: 2,
           text: 'heading',
           tokens: [{ type: 'text', raw: 'heading', text: 'heading', escaped: false }],
+          style: 'atx',
         }],
       });
     });
@@ -256,6 +266,7 @@ lheading 2
           depth: 2,
           text: 'heading##',
           tokens: [{ type: 'text', raw: 'heading##', text: 'heading##', escaped: false }],
+          style: 'atx',
         }],
       });
     });
@@ -268,6 +279,7 @@ lheading 2
           raw: '## **bold** and _em_',
           depth: 2,
           text: '**bold** and _em_',
+          style: 'atx',
           tokens: [
             {
               type: 'strong',
@@ -297,6 +309,7 @@ lheading 2
             depth: 1,
             text: 'heading',
             tokens: [{ type: 'text', raw: 'heading', text: 'heading', escaped: false }],
+            style: 'atx',
           },
           {
             type: 'paragraph',
@@ -529,7 +542,7 @@ a | b
       expectTokens({
         md: '---',
         tokens: [
-          { type: 'hr', raw: '---' },
+          { type: 'hr', raw: '---', character: '-' },
         ],
       });
     });
@@ -588,6 +601,7 @@ a | b
             ordered: false,
             start: '',
             loose: false,
+            bulletChar: '-',
             items: [
               {
                 type: 'list_item',
@@ -637,6 +651,7 @@ a | b
             ordered: false,
             start: '',
             loose: false,
+            bulletChar: '-',
             items: [
               {
                 type: 'list_item',
@@ -687,6 +702,7 @@ a | b
             ordered: true,
             start: 1,
             loose: false,
+            orderChar: '.',
             items: [
               {
                 type: 'list_item',
@@ -755,6 +771,7 @@ a | b
             ordered: true,
             start: 1,
             loose: false,
+            orderChar: ')',
             items: [
               {
                 type: 'list_item',
@@ -825,6 +842,7 @@ paragraph
             ordered: false,
             start: '',
             loose: false,
+            bulletChar: '-',
             items: [
               {
                 type: 'list_item',
@@ -910,6 +928,7 @@ paragraph
             ordered: true,
             start: 2,
             loose: false,
+            orderChar: '.',
             items: [
               {
                 type: 'list_item',
@@ -979,6 +998,7 @@ paragraph
             ordered: false,
             start: '',
             loose: true,
+            bulletChar: '-',
             items: [
               {
                 type: 'list_item',
@@ -1050,6 +1070,7 @@ paragraph
             ordered: false,
             start: '',
             loose: true,
+            bulletChar: '-',
             items: [
               {
                 type: 'list_item',
@@ -1157,6 +1178,7 @@ paragraph
             ordered: false,
             start: '',
             loose: false,
+            bulletChar: '-',
             items: [
               {
                 type: 'list_item',
@@ -1184,6 +1206,7 @@ paragraph
                     ordered: false,
                     start: '',
                     loose: false,
+                    bulletChar: '-',
                     items: [
                       {
                         type: 'list_item',
@@ -1234,6 +1257,7 @@ paragraph
             ordered: false,
             start: '',
             loose: false,
+            bulletChar: '-',
             items: [
               {
                 type: 'list_item',
@@ -1313,6 +1337,7 @@ paragraph
             ordered: false,
             start: '',
             loose: false,
+            bulletChar: '-',
             items: [
               {
                 type: 'list_item',
@@ -1349,6 +1374,7 @@ paragraph
           ordered: false,
           start: '',
           loose: false,
+          bulletChar: '-',
           items: [
             {
               type: 'list_item',
@@ -1387,6 +1413,7 @@ paragraph
             ordered: false,
             start: '',
             loose: false,
+            bulletChar: '-',
             items: [
               {
                 type: 'list_item',
@@ -1905,6 +1932,7 @@ paragraph
                 raw: '<https://example.com>',
                 text: 'https://example.com',
                 href: 'https://example.com',
+                autolink: true,
                 tokens: [
                   {
                     type: 'text',
@@ -1927,6 +1955,7 @@ paragraph
                 raw: '<test@example.com>',
                 text: 'test@example.com',
                 href: 'mailto:test@example.com',
+                autolink: true,
                 tokens: [
                   {
                     type: 'text',
@@ -1948,6 +1977,7 @@ paragraph
                 raw: 'https://example.com',
                 text: 'https://example.com',
                 href: 'https://example.com',
+                autolink: true,
                 tokens: [
                   {
                     type: 'text',
@@ -1970,6 +2000,7 @@ paragraph
                 raw: 'test@example.com',
                 text: 'test@example.com',
                 href: 'mailto:test@example.com',
+                autolink: true,
                 tokens: [
                   {
                     type: 'text',
