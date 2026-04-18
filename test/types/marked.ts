@@ -103,8 +103,8 @@ class ExtendedRenderer extends marked.Renderer {
   codespan = ({ type, raw, text }: Tokens.Codespan): string => super.codespan({ type, raw, text });
   br = ({ type, raw }: Tokens.Br): string => super.br({ type, raw });
   del = ({ type, raw, text, tokens }: Tokens.Del): string => super.del({ type, raw, text, tokens });
-  link = ({ type, raw, href, title, text, tokens }: Tokens.Link): string => super.link({ type, raw, href, title, text, tokens });
-  image = ({ type, raw, href, title, text }: Tokens.Image): string => super.image({ type, raw, href, title, text, tokens });
+  link = ({ type, raw, href, title, text, tokens, linkStyle }: Tokens.Link): string => super.link({ type, raw, href, title, text, tokens, linkStyle });
+  image = ({ type, raw, href, title, text, linkStyle }: Tokens.Image): string => super.image({ type, raw, href, title, text, tokens, linkStyle });
 }
 
 const rendererOptions: MarkedOptions = renderer.options;

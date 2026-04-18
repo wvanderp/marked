@@ -1722,6 +1722,7 @@ paragraph
               href: 'https://example.com',
               title: null,
               text: 'link',
+              linkStyle: 'inline',
               tokens: [
                 {
                   type: 'text',
@@ -1745,6 +1746,7 @@ paragraph
               href: 'https://example.com',
               title: 'title',
               text: 'link',
+              linkStyle: 'inline',
               tokens: [
                 {
                   type: 'text',
@@ -1768,6 +1770,7 @@ paragraph
               text: 'image',
               href: 'https://example.com/image.png',
               title: null,
+              linkStyle: 'inline',
               tokens: [{
                 type: 'text',
                 raw: 'image',
@@ -1789,6 +1792,7 @@ paragraph
               text: 'image',
               href: 'https://example.com/image.png',
               title: 'title',
+              linkStyle: 'inline',
               tokens: [{
                 type: 'text',
                 raw: 'image',
@@ -1814,6 +1818,7 @@ paragraph
                 href: 'https://example.com',
                 title: 'title',
                 text: 'link',
+                linkStyle: 'reflink',
                 tokens: [{
                   type: 'text',
                   raw: 'link',
@@ -1838,6 +1843,7 @@ paragraph
                 href: 'https://example.com',
                 title: 'title',
                 text: 'link',
+                linkStyle: 'reflink',
                 tokens: [{
                   type: 'text',
                   raw: 'link',
@@ -2053,8 +2059,7 @@ paragraph
                 raw: '<https://example.com>',
                 text: 'https://example.com',
                 href: 'https://example.com',
-                autolink: true,
-                bareAutolink: false,
+                linkStyle: 'autolink',
                 tokens: [
                   {
                     type: 'text',
@@ -2077,8 +2082,7 @@ paragraph
                 raw: '<test@example.com>',
                 text: 'test@example.com',
                 href: 'mailto:test@example.com',
-                autolink: true,
-                bareAutolink: false,
+                linkStyle: 'autolink',
                 tokens: [
                   {
                     type: 'text',
@@ -2100,8 +2104,7 @@ paragraph
                 raw: 'https://example.com',
                 text: 'https://example.com',
                 href: 'https://example.com',
-                autolink: true,
-                bareAutolink: true,
+                linkStyle: 'barelink',
                 tokens: [
                   {
                     type: 'text',
@@ -2124,8 +2127,7 @@ paragraph
                 raw: 'test@example.com',
                 text: 'test@example.com',
                 href: 'mailto:test@example.com',
-                autolink: true,
-                bareAutolink: true,
+                linkStyle: 'barelink',
                 tokens: [
                   {
                     type: 'text',

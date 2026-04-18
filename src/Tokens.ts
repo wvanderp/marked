@@ -129,6 +129,7 @@ export namespace Tokens {
     title: string | null;
     text: string;
     tokens: Token[];
+    linkStyle: 'inline' | 'reflink';
   }
 
   export interface Link {
@@ -138,8 +139,7 @@ export namespace Tokens {
     title?: string | null;
     text: string;
     tokens: Token[];
-    autolink?: boolean;
-    bareAutolink?: boolean;
+    linkStyle: 'inline' | 'reflink' | 'autolink' | 'barelink';
   }
 
   export interface List {

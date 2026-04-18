@@ -11,20 +11,32 @@ import type { _Lexer } from './Lexer.ts';
 import type { Links, Tokens, Token } from './Tokens.ts';
 import type { MarkedOptions } from './MarkedOptions.ts';
 
-function outputLink(cap: string[], link: Pick<Tokens.Link, 'href' | 'title'>, raw: string, lexer: _Lexer, rules: Rules): Tokens.Link | Tokens.Image {
+function outputLink(cap: string[], link: Pick<Tokens.Link, 'href' | 'title'>, raw: string, lexer: _Lexer, rules: Rules, linkStyle: 'inline' | 'reflink'): Tokens.Link | Tokens.Image {
   const href = link.href;
   const title = link.title || null;
   const text = cap[1].replace(rules.other.outputLinkReplace, '$1');
 
   lexer.state.inLink = true;
-  const token: Tokens.Link | Tokens.Image = {
-    type: cap[0].charAt(0) === '!' ? 'image' : 'link',
-    raw,
-    href,
-    title,
-    text,
-    tokens: lexer.inlineTokens(text),
-  };
+  const isImage = cap[0].charAt(0) === '!';
+  const token: Tokens.Link | Tokens.Image = isImage
+    ? {
+      type: 'image',
+      raw,
+      href,
+      title,
+      text,
+      tokens: lexer.inlineTokens(text),
+      linkStyle,
+    }
+    : {
+      type: 'link',
+      raw,
+      href,
+      title,
+      text,
+      tokens: lexer.inlineTokens(text),
+      linkStyle,
+    };
   lexer.state.inLink = false;
   return token;
 }
@@ -733,7 +745,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
       return outputLink(cap, {
         href: href ? href.replace(this.rules.inline.anyPunctuation, '$1') : href,
         title: title ? title.replace(this.rules.inline.anyPunctuation, '$1') : title,
-      }, cap[0], this.lexer, this.rules);
+      }, cap[0], this.lexer, this.rules, 'inline');
     }
   }
 
@@ -751,7 +763,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
           text,
         };
       }
-      return outputLink(cap, link, cap[0], this.lexer, this.rules);
+      return outputLink(cap, link, cap[0], this.lexer, this.rules, 'reflink');
     }
   }
 
@@ -923,8 +935,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
         raw: cap[0],
         text,
         href,
-        autolink: true,
-        bareAutolink: false,
+        linkStyle: 'autolink',
         tokens: [
           {
             type: 'text',
@@ -962,8 +973,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
         raw: cap[0],
         text,
         href,
-        autolink: true,
-        bareAutolink: true,
+        linkStyle: 'barelink',
         tokens: [
           {
             type: 'text',
