@@ -104,6 +104,7 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
       return {
         type: 'code',
         raw,
+        codeBlockStyle: 'fenced',
         lang: cap[2] ? cap[2].trim().replace(this.rules.inline.anyPunctuation, '$1') : cap[2],
         text,
       };

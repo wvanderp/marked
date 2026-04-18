@@ -79,7 +79,7 @@ describe('Lexer', () => {
       expectTokens({
         md: '```\ncode\n```',
         tokens: [
-          { type: 'code', raw: '```\ncode\n```', text: 'code', lang: '' },
+          { type: 'code', raw: '```\ncode\n```', text: 'code', codeBlockStyle: 'fenced', lang: '' },
         ],
       });
     });
@@ -88,7 +88,7 @@ describe('Lexer', () => {
       expectTokens({
         md: '```text\ncode\n```',
         tokens: [
-          { type: 'code', raw: '```text\ncode\n```', text: 'code', lang: 'text' },
+          { type: 'code', raw: '```text\ncode\n```', text: 'code', codeBlockStyle: 'fenced', lang: 'text' },
         ],
       });
     });

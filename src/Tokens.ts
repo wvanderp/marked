@@ -51,7 +51,7 @@ export namespace Tokens {
   export interface Code {
     type: 'code';
     raw: string;
-    codeBlockStyle?: 'indented';
+    codeBlockStyle?: 'indented' | 'fenced';
     lang?: string;
     text: string;
     escaped?: boolean;
