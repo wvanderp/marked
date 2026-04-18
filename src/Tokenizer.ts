@@ -72,9 +72,15 @@ export class _Tokenizer<ParserOutput = string, RendererOutput = string> {
   space(src: string): Tokens.Space | undefined {
     const cap = this.rules.block.newline.exec(src);
     if (cap && cap[0].length > 0) {
+      const raw = cap[0];
+      let lines = 0;
+      for (let i = 0; i < raw.length; i++) {
+        if (raw[i] === '\n') lines++;
+      }
       return {
         type: 'space',
-        raw: cap[0],
+        raw,
+        lines,
       };
     }
   }

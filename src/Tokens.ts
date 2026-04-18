@@ -174,6 +174,7 @@ export namespace Tokens {
   export interface Space {
     type: 'space';
     raw: string;
+    lines: number;
   }
 
   export interface Strong {

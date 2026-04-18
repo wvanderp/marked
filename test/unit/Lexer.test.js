@@ -37,7 +37,7 @@ describe('Lexer', () => {
             text: 'paragraph 1',
             tokens: [{ type: 'text', raw: 'paragraph 1', text: 'paragraph 1', escaped: false }],
           },
-          { type: 'space', raw: '\n\n' },
+          { type: 'space', raw: '\n\n', lines: 2 },
           {
             type: 'paragraph',
             raw: 'paragraph 2',
@@ -64,7 +64,7 @@ describe('Lexer', () => {
         md: '    code\n     \n\t\t\n \t\n\nnext',
         tokens: [
           { type: 'code', raw: '    code', text: 'code', codeBlockStyle: 'indented' },
-          { type: 'space', raw: '\n     \n\t\t\n \t\n\n' },
+          { type: 'space', raw: '\n     \n\t\t\n \t\n\n', lines: 5 },
           {
             type: 'paragraph',
             raw: 'next',
@@ -120,6 +120,7 @@ lheading 2
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           },
           {
             type: 'heading',
@@ -132,6 +133,7 @@ lheading 2
           {
             type: 'space',
             raw: '\n\n',
+            lines: 2,
           },
           {
             type: 'heading',
@@ -144,6 +146,7 @@ lheading 2
           {
             type: 'space',
             raw: '\n\n',
+            lines: 2,
           },
           {
             type: 'heading',
@@ -156,6 +159,7 @@ lheading 2
           {
             type: 'space',
             raw: '\n\n',
+            lines: 2,
           },
           {
             type: 'heading',
@@ -168,6 +172,7 @@ lheading 2
           {
             type: 'space',
             raw: '\n\n',
+            lines: 2,
           },
           {
             type: 'heading',
@@ -180,6 +185,7 @@ lheading 2
           {
             type: 'space',
             raw: '\n\n',
+            lines: 2,
           },
           {
             type: 'heading',
@@ -192,6 +198,7 @@ lheading 2
           {
             type: 'space',
             raw: '\n\n',
+            lines: 2,
           },
           {
             type: 'heading',
@@ -204,6 +211,7 @@ lheading 2
           {
             type: 'space',
             raw: '\n\n',
+            lines: 2,
           },
           {
             type: 'heading',
@@ -333,6 +341,7 @@ lheading 2
         tokens: [{
           type: 'space',
           raw: '\n',
+          lines: 1,
         }, {
           type: 'table',
           align: [null, null],
@@ -382,6 +391,7 @@ paragraph 1
         tokens: [{
           type: 'space',
           raw: '\n',
+          lines: 1,
         }, {
           type: 'paragraph',
           raw: 'paragraph 1\n',
@@ -437,6 +447,7 @@ paragraph 1
         tokens: [{
           type: 'space',
           raw: '\n',
+          lines: 1,
         }, {
           type: 'table',
           align: ['left', 'center', 'right'],
@@ -498,6 +509,7 @@ a | b
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           }, {
             type: 'table',
             align: [null, null],
@@ -645,6 +657,7 @@ a | b
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           }, {
             type: 'list',
             raw: '- item 1\n- item 2\n',
@@ -695,6 +708,7 @@ a | b
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           },
           {
             type: 'list',
@@ -764,6 +778,7 @@ a | b
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           },
           {
             type: 'list',
@@ -835,6 +850,7 @@ paragraph
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           },
           {
             type: 'list',
@@ -893,6 +909,7 @@ paragraph
           {
             type: 'space',
             raw: '\n\n',
+            lines: 2,
           },
           {
             type: 'paragraph',
@@ -921,6 +938,7 @@ paragraph
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           },
           {
             type: 'list',
@@ -991,6 +1009,7 @@ paragraph
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           },
           {
             type: 'list',
@@ -1063,6 +1082,7 @@ paragraph
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           },
           {
             type: 'list',
@@ -1117,6 +1137,7 @@ paragraph
                   {
                     type: 'space',
                     raw: '\n\n',
+                    lines: 2,
                   },
                   {
                     type: 'paragraph',
@@ -1171,6 +1192,7 @@ paragraph
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           },
           {
             type: 'list',
@@ -1250,6 +1272,7 @@ paragraph
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           },
           {
             type: 'list',
@@ -1331,6 +1354,7 @@ paragraph
           {
             type: 'space',
             raw: '\n',
+            lines: 1,
           }, {
             type: 'list',
             raw: '- line 1\n  line 2\n',
@@ -1367,6 +1391,7 @@ paragraph
         tokens: [{
           type: 'space',
           raw: '\n',
+          lines: 1,
         },
         {
           type: 'list',
@@ -1406,7 +1431,7 @@ paragraph
 [1]: hello
 `,
         tokens: [
-          { type: 'space', raw: '\n' },
+          { type: 'space', raw: '\n', lines: 1 },
           {
             type: 'list',
             raw: '- hello\n[1]: hello\n',
@@ -1484,6 +1509,7 @@ paragraph
           {
             type: 'space',
             raw: '\n \n\t\n\n',
+            lines: 4,
           },
           {
             type: 'paragraph',
